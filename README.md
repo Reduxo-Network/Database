@@ -12,7 +12,7 @@
     }
     
     @Override
-    public void disable(){
+    public void onDisable(){
         this.database.disconnect();
     }
 #
@@ -24,6 +24,6 @@
     }
 
     @Override
-    public void disable(){
+    public void onDisable(){
         this.hazelServer.shutdown();
     }
