@@ -16,11 +16,11 @@
         this.database.disconnect();
     }
 #
-    private HazelServer hazelServer;
+    private HazelServer<K, V> hazelServer;
 
     @Override
     public void onLoad(){
-        this.hazelServer = HazelServer.create("address");
+        this.hazelServer = HazelServer.create("address", "Cluster");
     }
 
     @Override
