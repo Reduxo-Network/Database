@@ -50,24 +50,54 @@ public class HazelServer<K, V> implements IServer<K, V> {
     public static <K, V> HazelServer<K, V> create(String address, String field) {
         return new <K, V>HazelServer<K, V>(address, field);
     }
-
+    /**
+     * Checks whether the specified key exists in the map associated with the given field.
+     *
+     * @param field The name of the map to check.
+     * @param key   The key to be checked for existence.
+     * @return True if the key is present in the map, otherwise false.
+     */
     @Override
     public boolean containsKey(String field, K key) {
         return hazelcastInstance.getMap(field).containsKey(key);
     }
 
+    /**
+     * Sets the value for the given key in the map associated with the specified field.
+     *
+     * @param field The name of the map to set the value.
+     * @param key   The key for which the value is to be set.
+     * @param value The value to be set in the map for the given key.
+     */
     @Override
     public void setMap(String field, K key, V value) {
         Map<K, V> map = hazelcastInstance.getMap(field);
         map.put(key, value);
     }
 
+    /**
+     * Sets the value for the given key in the map associated with the specified field with an expiration time.
+     *
+     * @param field   The name of the map to set the value.
+     * @param key     The key for which the value is to be set.
+     * @param value   The value to be set in the map for the given key.
+     * @param seconds The duration in seconds after which the key-value pair will be automatically removed from the map.
+     */
     @Override
     public void setCacheMap(String field, K key, V value, int seconds) {
         IMap<K, V> map = hazelcastInstance.getMap(field);
         map.put(key, value, seconds, TimeUnit.SECONDS);
     }
 
+    /**
+     * Sets the value for the given key in the map associated with the specified field with an expiration time and adds an entry listener to receive events related to this entry.
+     *
+     * @param field         The name of the map to set the value.
+     * @param key           The key for which the value is to be set.
+     * @param value         The value to be set in the map for the given key.
+     * @param seconds       The duration in seconds after which the key-value pair will be automatically removed from the map.
+     * @param entryListener An entry listener to receive events related to this entry.
+     */
     @Override
     public void setCacheMap(String field, K key, V value, int seconds, EntryListener<K, V> entryListener) {
         IMap<K, V> map = hazelcastInstance.getMap(field);
@@ -75,12 +105,26 @@ public class HazelServer<K, V> implements IServer<K, V> {
         map.addEntryListener(entryListener, true);
     }
 
+    /**
+     * Removes the key-value pair associated with the given key from the map with the specified field.
+     *
+     * @param field The name of the map to remove the key-value pair.
+     * @param key   The key for which the key-value pair is to be removed.
+     */
     @Override
     public void removeMap(String field, K key) {
         Map<K, V> map = hazelcastInstance.getMap(field);
         map.remove(key);
     }
 
+    /**
+     * Retrieves the value associated with the given key from the map with the specified field and converts it to the specified class type using Gson (Google's JSON library).
+     *
+     * @param field The name of the map to retrieve the value.
+     * @param key   The key for which the value is to be retrieved.
+     * @param clazz The class type to which the value should be converted.
+     * @return The value associated with the given key, converted to the specified class type.
+     */
     @Override
     public Object mapGet(String field, K key, Class<?> clazz) {
         Map<K, V> map = hazelcastInstance.getMap(field);
@@ -88,29 +132,57 @@ public class HazelServer<K, V> implements IServer<K, V> {
         return gson.fromJson(jsonValue, clazz);
     }
 
+    /**
+     * Retrieves the value associated with the given key from the map with the specified field.
+     *
+     * @param field The name of the map to retrieve the value.
+     * @param key   The key for which the value is to be retrieved.
+     * @return The value associated with the given key.
+     */
     @Override
     public Object mapGet(String field, K key) {
         Map<K, V> map = hazelcastInstance.getMap(field);
         return map.get(key);
     }
 
+    /**
+     * Returns an ITopic (Hazelcast Topic) for the given field.
+     *
+     * @param field The name of the topic to be registered.
+     * @return The ITopic instance associated with the given field.
+     */
     @Override
     public ITopic<String> topicRegister(String field) {
         return hazelcastInstance.getTopic(field);
     }
 
+    /**
+     * Returns a set containing all the keys in the map associated with the given field.
+     *
+     * @param field The name of the map to retrieve the keys.
+     * @return A set containing all the keys in the map.
+     */
     @Override
     public Set<K> mapKeys(String field) {
         IMap<K, V> map = hazelcastInstance.getMap(field);
         return map.keySet();
     }
 
+    /**
+     * Returns an immutable copy of the map associated with the given field.
+     *
+     * @param field The name of the map to retrieve the value.
+     * @return An immutable copy of the map.
+     */
     @Override
     public Map<K, V> mapValue(String field) {
         IMap<K, V> map = hazelcastInstance.getMap(field);
         return Map.copyOf(map);
     }
 
+    /**
+     * Shuts down the Hazelcast instance.
+     */
     @Override
     public void shutdown() {
         this.hazelcastInstance.shutdown();
