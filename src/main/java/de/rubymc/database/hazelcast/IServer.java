@@ -16,11 +16,6 @@ import java.util.Set;
  */
 public interface IServer<K, V> {
 
-    final Gson gson = new GsonBuilder().
-            serializeNulls().
-            disableHtmlEscaping().
-            setPrettyPrinting().
-            create();
 
     /**
      * Checks if the specified key exists in the distributed map.
