@@ -1,10 +1,13 @@
+
 plugins {
     id("java")
     id("com.github.johnrengelman.shadow") version "8.1.1"
+
 }
 
 group = "de.netpacket"
-version = "1.0-SNAPSHOT"
+version = "1.1-SNAPSHOT"
+
 
 repositories {
     mavenCentral()
@@ -19,15 +22,25 @@ dependencies {
 
     // https://mvnrepository.com/artifact/com.google.code.gson/gson
     compileOnly ("com.google.code.gson:gson:2.9.0")
+
+
 }
+
+/*
+tasks.withType<Jar> {
+    manifest {
+        attributes["Main-Class"] = "de.rubymc.database.DatabaseBootstrap"
+    }
+}
+
+ */
+
+
 tasks {
     compileJava {
         options.encoding = "UTF-8"
     }
-
     shadowJar {
-        relocate("com.hazelcast", "de.rubymc.libs.hazelcast")
-        relocate("org.mongodb", "de.rubymc.libs.mongodb")
         mergeServiceFiles()
     }
 
