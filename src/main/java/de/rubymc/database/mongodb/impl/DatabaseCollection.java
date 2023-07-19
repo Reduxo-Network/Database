@@ -230,7 +230,7 @@ public class DatabaseCollection implements ICollection {
     @Override
     public List<Document> topWall(String field, int limit) {
         List<Bson> pipeline = Arrays.asList(
-                Aggregates.sort(Sorts.ascending(field)),
+                Aggregates.sort(Sorts.descending(field)),
                 Aggregates.limit(limit)
         );
         AggregateIterable<Document> iterable = collection.aggregate(pipeline);
