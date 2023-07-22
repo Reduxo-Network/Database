@@ -1,4 +1,4 @@
-package de.rubymc.database.mongodb;
+package de.rubymc.mongodb;
 /**
  * A simple generic class that represents a pair of values.
  *

@@ -1,7 +1,7 @@
-package de.rubymc.database.mongodb;
+package de.rubymc.mongodb;
 
 import com.mongodb.client.MongoDatabase;
-import de.rubymc.database.mongodb.impl.DatabaseCollection;
+import de.rubymc.mongodb.impl.DatabaseCollection;
 
 /**
 

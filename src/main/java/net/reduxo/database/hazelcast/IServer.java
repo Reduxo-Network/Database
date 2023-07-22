@@ -1,4 +1,4 @@
-package de.rubymc.database.hazelcast;
+package de.rubymc.hazelcast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

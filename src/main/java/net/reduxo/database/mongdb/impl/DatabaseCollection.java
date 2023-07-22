@@ -1,11 +1,11 @@
-package de.rubymc.database.mongodb.impl;
+package de.rubymc.mongodb.impl;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.AggregateIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.*;
-import de.rubymc.database.mongodb.ICollection;
-import de.rubymc.database.mongodb.Pair;
+import de.rubymc.mongodb.ICollection;
+import de.rubymc.mongodb.Pair;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 

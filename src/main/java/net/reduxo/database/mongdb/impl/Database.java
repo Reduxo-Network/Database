@@ -1,10 +1,10 @@
-package de.rubymc.database.mongodb.impl;
+package de.rubymc.mongodb.impl;
 
 import com.mongodb.ConnectionString;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
-import de.rubymc.database.mongodb.IDatabase;
+import de.rubymc.mongodb.IDatabase;
 /**
  * Represents a MongoDB database connection.
  */

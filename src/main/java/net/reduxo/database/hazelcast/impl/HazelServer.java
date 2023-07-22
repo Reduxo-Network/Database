@@ -1,14 +1,13 @@
-package de.rubymc.database.hazelcast.impl;
+package de.rubymc.hazelcast.impl;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
 import com.hazelcast.core.EntryListener;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
 import com.hazelcast.topic.ITopic;
-import de.rubymc.database.hazelcast.IServer;
+import de.rubymc.hazelcast.IServer;
 
 import java.util.Map;
 import java.util.Set;

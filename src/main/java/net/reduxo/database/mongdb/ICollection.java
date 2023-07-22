@@ -1,4 +1,4 @@
-package de.rubymc.database.mongodb;
+package de.rubymc.mongodb;
 
 import com.mongodb.client.MongoCollection;
 import org.bson.Document;
